@@ -41,7 +41,7 @@ import_admin
 # /start
 # =========================
 
-"async_def_start(update:Update, context: ContextTypes.DEFAULT_TYPE):
+"async_def_start"("update:Update, context: ContextTypes.DEFAULT_TYPE):
 
     user = update.effective_user
 
