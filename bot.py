@@ -66,7 +66,9 @@ async def buttons(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     await query.answer()
 
-    user = query.from_user    # =========================
+    user = query.from_user 
+    
+    # =========================
     # Language Selection
     # =========================
 
@@ -132,7 +134,9 @@ async def buttons(update: Update, context: ContextTypes.DEFAULT_TYPE):
             reply_markup=keyboards.main_menu("fa")
         )
 
-        return    # =========================
+        return   
+     
+    # =========================
     # Main Menu
     # =========================
 
@@ -189,7 +193,9 @@ async def buttons(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         )
 
-        return    # =========================
+        return   
+        
+    # =========================
     # Payment
     # =========================
 
@@ -236,55 +242,9 @@ async def buttons(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         await query.message.edit_text(text)
 
-        return    # =========================
-    # Buy Products
+        return   
+       
     # =========================
-
-    if query.data.startswith("buy_"):
-
-        product = query.data.replace("buy_", "")
-
-        database.add_order(
-            user.id,
-            product
-        )
-
-        await admin.send_order(
-            context.bot,
-            user,
-            product
-        )
-
-        text = f"""
-✅ سفارش شما ثبت شد.
-
-━━━━━━━━━━━━━━
-
-🛒 محصول:
-
-{product}
-
-━━━━━━━━━━━━━━
-
-💳 شماره کارت:
-
-{config.CARD_NUMBER}
-
-👤 صاحب کارت:
-
-{config.CARD_OWNER}
-
-━━━━━━━━━━━━━━
-
-📩 بعد از پرداخت،
-رسید را برای پشتیبانی ارسال کنید.
-
-{config.SUPPORT_USERNAME}
-"""
-
-        await query.message.edit_text(text)
-
-        return    # =========================
     # Back To Main Menu
     # =========================
 
@@ -297,7 +257,9 @@ async def buttons(update: Update, context: ContextTypes.DEFAULT_TYPE):
             reply_markup=keyboards.main_menu(lang)
         )
 
-        return# =========================
+        return
+        
+# =========================
 # Run Bot
 # =========================
 
