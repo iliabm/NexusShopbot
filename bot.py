@@ -297,6 +297,19 @@ async def buttons(update: Update, context: ContextTypes.DEFAULT_TYPE):
             reply_markup=keyboards.main_menu(lang)
         )
 
-        return
+        return# =========================
+# Run Bot
+# =========================
+
+app = Application.builder().token(config.BOT_TOKEN).build()
+
+app.add_handler(CommandHandler("start", start))
+app.add_handler(CommandHandler("admin", admin.admin_panel))
+app.add_handler(CommandHandler("orders", admin.orders))
+app.add_handler(CallbackQueryHandler(buttons))
+
+print("🚀 Nexus Shop Bot Started")
+
+app.run_polling()
       
   
