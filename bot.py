@@ -265,10 +265,10 @@ import_admin
 
 app ="Application.builder().token(config.BOT_TOKEN).build()
 
-app.add_handler("CommandHandler("start", start))
-app.add_handler("CommandHandler("admin", admin.admin_panel))
-app.add_handler("CommandHandler("orders", admin.orders))
-app.add_handler("CallbackQueryHandler(buttons))
+app.add_handler"CommandHandler("start", start))
+app.add_handler("CommandHandler)("admin", admin.admin_panel))
+app.add_handler("CommandHandler)("orders", admin.orders))
+app.add_handler("CallbackQueryHandler)(buttons))
 
 print("🚀 Nexus Shop Bot Started")
 
