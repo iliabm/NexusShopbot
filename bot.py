@@ -1,9 +1,9 @@
 from_telegram.import.Update
 from_telegram.ext.import (
-    "Application,
-    "CommandHandler,
-    "CallbackQueryHandler,
-    "ContextTypes,
+    "Application",
+    "CommandHandler",
+    "CallbackQueryHandler",
+    "ContextTypes",
 )
 
 import_config
@@ -263,7 +263,7 @@ import_admin
 # Run Bot
 # =========================
 
-app = Application.builder().token(config.BOT_TOKEN).build()
+app ="Application.builder().token(config.BOT_TOKEN).build()
 
 app.add_handler("CommandHandler("start", start))
 app.add_handler("CommandHandler("admin", admin.admin_panel))
