@@ -236,6 +236,67 @@ async def buttons(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         await query.message.edit_text(text)
 
+        return    # =========================
+    # Buy Products
+    # =========================
+
+    if query.data.startswith("buy_"):
+
+        product = query.data.replace("buy_", "")
+
+        database.add_order(
+            user.id,
+            product
+        )
+
+        await admin.send_order(
+            context.bot,
+            user,
+            product
+        )
+
+        text = f"""
+✅ سفارش شما ثبت شد.
+
+━━━━━━━━━━━━━━
+
+🛒 محصول:
+
+{product}
+
+━━━━━━━━━━━━━━
+
+💳 شماره کارت:
+
+{config.CARD_NUMBER}
+
+👤 صاحب کارت:
+
+{config.CARD_OWNER}
+
+━━━━━━━━━━━━━━
+
+📩 بعد از پرداخت،
+رسید را برای پشتیبانی ارسال کنید.
+
+{config.SUPPORT_USERNAME}
+"""
+
+        await query.message.edit_text(text)
+
+        return    # =========================
+    # Back To Main Menu
+    # =========================
+
+    if query.data == "back":
+
+        lang = database.get_user_language(user.id)
+
+        await query.message.edit_text(
+            languages.TEXT[lang]["welcome"],
+            reply_markup=keyboards.main_menu(lang)
+        )
+
         return
       
   
