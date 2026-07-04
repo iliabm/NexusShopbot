@@ -1,53 +1,53 @@
-from telegram import Update
-from telegram.ext import (
+from_telegram.import.Update
+from_telegram.ext.import (
     Application,
     CommandHandler,
     CallbackQueryHandler,
     ContextTypes,
 )
 
-import config
-import database
-import keyboards
-import languages
-import admin
+import_config
+import_database
+import_keyboards
+import_languages
+import_admin
 
 
 # =========================
 # Check Join
 # =========================
 
-async def is_joined(bot, user_id):
+async_def_is_joined(bot, user_id):
 
-    try:
+    "try"
 
-        member = await bot.get_chat_member(
+        member = await_bot.get_chat_member(
             config.CHANNEL_USERNAME,
             user_id
         )
 
-        return member.status in [
+        return_member.status.in [
             "member",
             "administrator",
             "owner"
         ]
 
-    except:
+    "except"
 
-        return False
+        return_False
 
 
 # =========================
 # /start
 # =========================
 
-async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+async_def_start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     user = update.effective_user
 
     database.add_user(user.id)
 
-    await update.message.reply_text(
+    await_update.message.reply_text(
 
         "🌍 لطفاً زبان خود را انتخاب کنید\n\nPlease choose your language",
 
@@ -60,11 +60,11 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 # Buttons
 # =========================
 
-async def buttons(update: Update, context: ContextTypes.DEFAULT_TYPE):
+async_def_buttons(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     query = update.callback_query
 
-    await query.answer()
+    await_query.answer()
 
     user = query.from_user 
     
@@ -72,77 +72,77 @@ async def buttons(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # Language Selection
     # =========================
 
-    if query.data == "lang_fa":
+    if_query.data == "lang_fa":
 
-        joined = await is_joined(context.bot, user.id)
+        joined = await_is_joined(context.bot, user.id)
 
-        if not joined:
+        if_not_joined:
 
-            await query.message.edit_text(
+            await_query.message.edit_text(
                 languages.TEXT["fa"]["join"],
                 reply_markup=keyboards.join_keyboard("fa")
             )
 
-            return
+            "return"
 
-        await query.message.edit_text(
+        await_query.message.edit_text(
             languages.TEXT["fa"]["welcome"],
             reply_markup=keyboards.main_menu("fa")
         )
 
-        return
+        "return"
 
-    if query.data == "lang_en":
+    if_query.data == "lang_en":
 
-        joined = await is_joined(context.bot, user.id)
+        joined = await_is_joined(context.bot, user.id)
 
-        if not joined:
+        if_not_joined:
 
-            await query.message.edit_text(
+            await_query.message.edit_text(
                 languages.TEXT["en"]["join"],
                 reply_markup=keyboards.join_keyboard("en")
             )
 
-            return
+            "return"
 
-        await query.message.edit_text(
+        await_query.message.edit_text(
             languages.TEXT["en"]["welcome"],
             reply_markup=keyboards.main_menu("en")
         )
 
-        return
+        "return"
 
     # =========================
     # Check Join Button
     # =========================
 
-    if query.data == "check_join":
+    if_query.data == "check_join":
 
-        joined = await is_joined(context.bot, user.id)
+        joined = await_is_joined(context.bot, user.id)
 
-        if not joined:
+        if_not_joined:
 
-            await query.answer(
+            await_query.answer(
                 "❌ ابتدا عضو کانال شوید.",
                 show_alert=True
             )
 
-            return
+            "return"
 
-        await query.message.edit_text(
+        await_query.message.edit_text(
             languages.TEXT["fa"]["welcome"],
             reply_markup=keyboards.main_menu("fa")
         )
 
-        return   
+        "return"   
      
     # =========================
     # Main Menu
     # =========================
 
-    if query.data == "premium":
+    if_query.data == "premium":
 
-        await query.message.edit_text(
+        await_query.message.edit_text(
 
             "💎 Telegram Premium\n\n"
             "یکی از پلن‌ها را انتخاب کنید:",
@@ -151,12 +151,12 @@ async def buttons(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         )
 
-        return
+        "return"
 
 
-    if query.data == "stars":
+    if_query.data == "stars":
 
-        await query.message.edit_text(
+        await_query.message.edit_text(
 
             "⭐ Telegram Stars\n\n"
             "تعداد استار مورد نظر را انتخاب کنید:",
@@ -165,12 +165,12 @@ async def buttons(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         )
 
-        return
+        "return"
 
 
-    if query.data == "pubg":
+    if_query.data == "pubg":
 
-        await query.message.edit_text(
+        await_query.message.edit_text(
 
             "🎮 PUBG UC\n\n"
             "پکیج مورد نظر را انتخاب کنید:",
@@ -179,12 +179,12 @@ async def buttons(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         )
 
-        return
+        "return"
 
 
-    if query.data == "cod":
+    if_query.data == "cod":
 
-        await query.message.edit_text(
+        await_query.message.edit_text(
 
             "🎯 Call Of Duty CP\n\n"
             "پکیج مورد نظر را انتخاب کنید:",
@@ -193,13 +193,13 @@ async def buttons(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         )
 
-        return   
+        "return"  
         
     # =========================
     # Payment
     # =========================
 
-    if query.data.startswith("buy_"):
+    if_query.data.startswith("buy_"):
 
         product = query.data.replace("buy_", "")
 
@@ -234,30 +234,30 @@ async def buttons(update: Update, context: ContextTypes.DEFAULT_TYPE):
             product
         )
 
-        await admin.send_order(
+        await_admin.send_order(
             context.bot,
             user,
             product
         )
 
-        await query.message.edit_text(text)
+        await_query.message.edit_text(text)
 
-        return   
+        "return"   
        
     # =========================
     # Back To Main Menu
     # =========================
 
-    if query.data == "back":
+    if_query.data == "back":
 
         lang = database.get_user_language(user.id)
 
-        await query.message.edit_text(
+        await_query.message.edit_text(
             languages.TEXT[lang]["welcome"],
             reply_markup=keyboards.main_menu(lang)
         )
 
-        return
+        "return"
         
 # =========================
 # Run Bot
