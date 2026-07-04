@@ -17,7 +17,7 @@ import_admin
 # Check Join
 # =========================
 
-async_def_is_joined(bot, user_id):
+"async_def_is_joined(bot, user_id):
 
     "try"
 
@@ -41,7 +41,7 @@ async_def_is_joined(bot, user_id):
 # /start
 # =========================
 
-async_def_start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+"async_def_start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     user = update.effective_user
 
@@ -60,7 +60,7 @@ async_def_start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 # Buttons
 # =========================
 
-async_def_buttons(update: Update, context: ContextTypes.DEFAULT_TYPE):
+"async_def_buttons(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     query = update.callback_query
 
@@ -74,7 +74,7 @@ async_def_buttons(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     if_query.data == "lang_fa":
 
-        joined = await_is_joined(context.bot, user.id)
+        joined ="await_is_joined(context.bot, user.id)
 
         if_not_joined:
 
@@ -94,7 +94,7 @@ async_def_buttons(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     if_query.data == "lang_en":
 
-        joined = await_is_joined(context.bot, user.id)
+        joined ="await_is_joined(context.bot, user.id)
 
         if_not_joined:
 
@@ -118,7 +118,7 @@ async_def_buttons(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     if_query.data == "check_join":
 
-        joined = await_is_joined(context.bot, user.id)
+        joined ="await_is_joined(context.bot, user.id)
 
         if_not_joined:
 
@@ -265,10 +265,10 @@ async_def_buttons(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 app = Application.builder().token(config.BOT_TOKEN).build()
 
-app.add_handler(CommandHandler("start", start))
-app.add_handler(CommandHandler("admin", admin.admin_panel))
-app.add_handler(CommandHandler("orders", admin.orders))
-app.add_handler(CallbackQueryHandler(buttons))
+app.add_handler("CommandHandler("start", start))
+app.add_handler("CommandHandler("admin", admin.admin_panel))
+app.add_handler("CommandHandler("orders", admin.orders))
+app.add_handler("CallbackQueryHandler(buttons))
 
 print("🚀 Nexus Shop Bot Started")
 
