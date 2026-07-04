@@ -1,9 +1,9 @@
 from_telegram.import.Update
 from_telegram.ext.import (
-    Application,
-    CommandHandler,
-    CallbackQueryHandler,
-    ContextTypes,
+    "Application,
+    "CommandHandler,
+    "CallbackQueryHandler,
+    "ContextTypes,
 )
 
 import_config
@@ -41,7 +41,7 @@ import_admin
 # /start
 # =========================
 
-"async_def_start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+"async_def_start(update:Update, context: ContextTypes.DEFAULT_TYPE):
 
     user = update.effective_user
 
